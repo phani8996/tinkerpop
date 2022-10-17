@@ -36,6 +36,9 @@ image::https://raw.githubusercontent.com/apache/tinkerpop/master/docs/static/ima
 * Async operations in .NET can now be cancelled. This however does not cancel work that is already happening on the server.
 * Bumped to `snakeyaml` 1.32 to fix security vulnerability.
 * Improved logging for `gremlin-driver`.
+* Modified `Connection` and `Host` job scheduling in `gremlin-driver` by dividing their work to two different thread pools and sparing work from the primary pool responsible for submitting requests and reading results.
+* Prevented usage of the fork-join pool for `gremlin-driver` job scheduling.
+* Changed `Host` initialization within a `Client` to be parallel again in `gremlin-driver`.
 
 ==== Bugs
 
