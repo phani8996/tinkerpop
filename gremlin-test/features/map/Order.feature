@@ -280,21 +280,21 @@ Feature: Step - order()
       | marko  |
       | vadas  |
 
-  Scenario: g_V_order_byXoutE_count_descX
+  Scenario: g_V_order_byXoutE_count_descX_byXnameX
     Given the modern graph
     And the traversal of
       """
-      g.V().order().by(__.outE().count(), Order.desc)
+      g.V().order().by(__.outE().count(), Order.desc).by("name")
       """
     When iterated to list
     Then the result should be ordered
       | result |
       | v[marko] |
-      | v[josh]   |
+      | v[josh] |
       | v[peter] |
-      | v[vadas] |
       | v[lop] |
       | v[ripple] |
+      | v[vadas] |
 
   Scenario: g_V_hasLabelXpersonX_order_byXageX
     Given the modern graph
