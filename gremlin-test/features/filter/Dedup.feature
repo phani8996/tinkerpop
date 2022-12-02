@@ -195,11 +195,11 @@ Feature: Step - dedup()
       | josh |
       | ripple |
 
-  Scenario: g_V_both_both_dedup_byXoutE_countX_name
+  Scenario: g_V_both_both_order_byXnameX_barrier_dedup_byXoutE_countX_name
     Given the modern graph
     And the traversal of
       """
-      g.V().both().both().dedup().by(__.outE().count()).values("name")
+      g.V().both().both().order().by("name").barrier().dedup().by(__.outE().count()).values("name")
       """
     When iterated to list
     Then the result should be unordered
@@ -207,7 +207,7 @@ Feature: Step - dedup()
       | marko |
       | josh |
       | peter |
-      | ripple |
+      | lop |
 
   Scenario: g_V_groupCount_selectXvaluesX_unfold_dedup
     Given the modern graph

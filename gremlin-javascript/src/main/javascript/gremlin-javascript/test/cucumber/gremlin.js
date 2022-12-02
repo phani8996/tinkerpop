@@ -138,7 +138,7 @@ const gremlins = {
     g_V_asXaX_both_asXbX_dedupXa_bX_byXlabelX_selectXa_bX: [function({g}) { return g.V().as("a").both().as("b").dedup("a","b").by(T.label).select("a","b") }], 
     g_V_asXaX_outXcreatedX_asXbX_inXcreatedX_asXcX_dedupXa_bX_path: [function({g}) { return g.V().as("a").out("created").as("b").in_("created").as("c").dedup("a","b").path() }], 
     g_V_outE_asXeX_inV_asXvX_selectXeX_order_byXweight_ascX_selectXvX_valuesXnameX_dedup: [function({g}) { return g.V().outE().as("e").inV().as("v").select("e").order().by("weight",Order.asc).select("v").values("name").dedup() }], 
-    g_V_both_both_dedup_byXoutE_countX_name: [function({g}) { return g.V().both().both().dedup().by(__.outE().count()).values("name") }], 
+    g_V_both_both_order_byXnameX_barrier_dedup_byXoutE_countX_name: [function({g}) { return g.V().both().both().order().by("name").barrier().dedup().by(__.outE().count()).values("name") }], 
     g_V_groupCount_selectXvaluesX_unfold_dedup: [function({g}) { return g.V().groupCount().select(Column.values).unfold().dedup() }], 
     g_V_asXaX_repeatXbothX_timesX3X_emit_name_asXbX_group_byXselectXaXX_byXselectXbX_dedup_order_foldX_selectXvaluesX_unfold_dedup: [function({g}) { return g.V().as("a").repeat(__.both()).times(3).emit().values("name").as("b").group().by(__.select("a")).by(__.select("b").dedup().order().fold()).select(Column.values).unfold().dedup() }], 
     g_V_repeatXdedupX_timesX2X_count: [function({g}) { return g.V().repeat(__.dedup()).times(2).count() }], 

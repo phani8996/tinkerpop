@@ -85,7 +85,7 @@ public abstract class DedupTest extends AbstractGremlinProcessTest {
 
     public abstract Traversal<Vertex, String> get_g_V_outE_asXeX_inV_asXvX_selectXeX_order_byXweight_ascX_selectXvX_valuesXnameX_dedup();
 
-    public abstract Traversal<Vertex, String> get_g_V_both_both_dedup_byXoutE_countX_name();
+    public abstract Traversal<Vertex, String> get_g_V_both_both_order_byXnameX_barrier_dedup_byXoutE_countX_name();
 
     public abstract Traversal<Vertex, String> get_g_V_out_in_valuesXnameX_fold_dedupXlocalX_unfold();
 
@@ -311,11 +311,16 @@ public abstract class DedupTest extends AbstractGremlinProcessTest {
 
     @Test
     @LoadGraphWith(MODERN)
-    public void g_V_both_both_dedup_byXoutE_countX_name() {
-        final Traversal<Vertex, String> traversal = get_g_V_both_both_dedup_byXoutE_countX_name();
+    public void g_V_both_both_order_byXnameX_barrier_dedup_byXoutE_countX_name() {
+        final Traversal<Vertex, String> traversal = get_g_V_both_both_order_byXnameX_barrier_dedup_byXoutE_countX_name();
         printTraversalForm(traversal);
         final List<String> names = traversal.toList();
         assertEquals(4, names.size());
+
+        System.out.println("----dedup");
+        names.forEach(System.out::println);
+        System.out.println("----");
+
         assertTrue(names.contains("josh"));
         assertTrue(names.contains("peter"));
         assertTrue(names.contains("marko"));
@@ -451,8 +456,8 @@ public abstract class DedupTest extends AbstractGremlinProcessTest {
         }
 
         @Override
-        public Traversal<Vertex, String> get_g_V_both_both_dedup_byXoutE_countX_name() {
-            return g.V().both().both().dedup().by(__.outE().count()).values("name");
+        public Traversal<Vertex, String> get_g_V_both_both_order_byXnameX_barrier_dedup_byXoutE_countX_name() {
+            return g.V().both().both().order().by("name").barrier().dedup().by(__.outE().count()).values("name");
         }
 
         @Override
