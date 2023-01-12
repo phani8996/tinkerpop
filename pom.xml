@@ -164,7 +164,7 @@ limitations under the License.
         <!-- performance after 2.5.15 is similar to the poor performance of 3.x and 4.x - we can't upgrade past this
              version without a accepting a major performance hit. details related to this issue along with links
              to attempts to solve the problem with the Groovy community can be found on: TINKERPOP-2373 -->
-        <groovy.version>2.5.15</groovy.version>
+        <groovy.version>3.0.14</groovy.version>
         <guice.version>4.2.3</guice.version>
         <hadoop.version>3.3.3</hadoop.version>
         <hamcrest.version>2.2</hamcrest.version>
@@ -227,7 +227,7 @@ limitations under the License.
                             <rules>
                                 <DependencyConvergence/>
                                 <requireJavaVersion>
-                                    <version>[1.8,12)</version>
+                                    <version>[1.8,18)</version>
                                 </requireJavaVersion>
                                 <requireMavenVersion>
                                     <version>[3.5.3,)</version>
@@ -826,9 +826,9 @@ limitations under the License.
     <profiles>
 
         <profile>
-            <id>jdk11</id>
+            <id>jdk11plus</id>
             <activation>
-                <jdk>11</jdk>
+                <jdk>(11,18]</jdk>
             </activation>
             <properties>
                 <suresafeArgs>--illegal-access=permit</suresafeArgs>
